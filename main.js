@@ -105,6 +105,7 @@ function runderWeather() {
       i
     ].innerText = `${e.date} ${e.type} ${e.fengxiang}\n${e.high} ${e.low}`;
   });
+  document.getElementById('ganmao').innerText = state['ganmao'];
 }
 
 setInterval(updateTime, 1000);
