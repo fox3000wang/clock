@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>时钟</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style>
+    :root {
+      --heah-height: 5vw;
+      --heah-font-size: 3vw;
+    }
+
+    html,
+    body {
+      background-color: black;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -khtml-user-select: none;
+      user-select: none;
+      font: 16px;
+      width: 100%;
+      height: 101%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .top {
+      display: flex;
+      width: 100%;
+      height: var(--heah-height);
+      border-bottom: 1px solid #fff;
+      color: #fff;
+      align-items: center;
+      font-size: var(--heah-font-size);
+      line-height: var(--heah-font-size);
+    }
+
+    .bg {
+      display: flex;
+      width: 100%;
+      height: 80%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottom {
+      display: flex;
+      width: 100%;
+      height: 10%;
+      border-top: 1px solid #fff;
+    }
+
+    .page {
+      display: flex;
+      width: 46vw;
+      height: 46vw;
+      background-color: #222;
+      border-radius: 20%;
+      margin: auto;
+    }
+
+    .time {
+      width: 100%;
+      color: #fff;
+      font-size: 38vw;
+      line-height: 46vw;
+      text-align: center;
+      padding: 0;
+    }
+
+    #second {
+      position: absolute;
+      color: #fff;
+      right: 2vw;
+      top: 2vw;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top">
+    <div id="year">2000</div>年<div id="month">01</div>月<div id="date">01</div>日 星期<div id="day">1</div>
+  </div>
+  <div class="bg">
+    <div class="page">
+      <div class="time" id="hour">00</div>
+    </div>
+    <div class="page">
+      <div class="time" id="minute">00</div>
+    </div>
+    <div id="second">00</div>
+  </div>
+  <div class="bottom">
+
+  </div>
+</body>
+
+<script>
+  var numZhCn = ['日', '一', '二', '三', '四', '五', '六'];
+  var timeProperty = ['hour', 'minute', 'second'];
+  var dateProperty = ['year', 'month', 'date', 'day'];
+  var state = {
+    year: '',
+    month: '1',
+    date: '',
+    day: '',
+    hour: '00',
+    minute: '00',
+    second: '00',
+  }
+
+  function updateState(obj) {
+    state = {
+      ...state,
+      ...obj,
+    }
+    console.log(JSON.stringify(state));
+  }
+
+  function toString(num) {
+    return ('00' + num).substr(num.toString().length);
+  }
+
+  function updateDate() {
+    var date = new Date();
+    updateState({
+      'year': date.getFullYear()
+    });
+    updateState({
+      'month': toString(date.getMonth() + 1)
+    });
+    updateState({
+      'date': toString(date.getDate())
+    });
+    updateState({
+      'day': numZhCn[date.getDay()]
+    });
+    runder();
+  }
+
+  function updateTime() {
+    var date = new Date();
+    updateState({
+      'hour': toString(date.getHours())
+    });
+    updateState({
+      'minute': toString(date.getMinutes())
+    });
+    updateState({
+      'second': toString(date.getSeconds())
+    });
+    runder();
+
+  }
+
+  function runder() {
+    timeProperty.forEach(function (e) {
+      document.getElementById(e).innerText = state[e];
+    });
+    dateProperty.forEach(function (e) {
+      document.getElementById(e).innerText = state[e];
+    });
+  }
+
+  setInterval(updateTime, 1000);
+  updateDate();
+</script>
+
+</html>
