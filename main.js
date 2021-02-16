@@ -87,7 +87,18 @@ function runderTime() {
   timeProperty.forEach(function (e) {
     document.getElementById(e).innerText = state[e];
   });
-  runderWeather();
+  runderWeather(); // 暂时先放这里
+
+  if (state['second'] === '00') {
+    document.getElementById('minute').style.animation = 'turn-page 1000ms';
+  } else {
+    document.getElementById('minute').style.animation = '';
+  }
+  if (state['minute'] === '00') {
+    document.getElementById('hour').style.animation = 'turn-page 1000ms';
+  } else {
+    document.getElementById('hour').style.animation = '';
+  }
 }
 
 function runderDate() {
@@ -99,7 +110,6 @@ function runderDate() {
 function runderWeather() {
   var forecast = document.getElementsByClassName('forecast');
   var forecastData = state.forecast;
-  // console.log(forecastData);
   forecastData.forEach(function (e, i) {
     forecast[
       i
