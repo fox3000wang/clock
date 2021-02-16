@@ -93,7 +93,7 @@ function runderTime() {
     document.getElementById('minute').style.animation =
       'turn-page1 1000ms ease-in-out 500ms';
   } else if (state['second'] === '00') {
-    document.getElementById('minute').style.animation = 'turn-page2 500ms';
+    document.getElementById('minute').style.animation = 'turn-page2 1000ms';
   } else {
     document.getElementById('minute').style.animation = '';
   }
@@ -102,7 +102,7 @@ function runderTime() {
     document.getElementById('hour').style.animation =
       'turn-page1 1000ms linear 500ms';
   } else if (state['second'] === '00' && state['minute'] === '00') {
-    document.getElementById('hour').style.animation = 'turn-page2 500ms';
+    document.getElementById('hour').style.animation = 'turn-page2 1000ms';
   } else {
     document.getElementById('hour').style.animation = '';
   }
@@ -116,12 +116,14 @@ function runderDate() {
 
 function runderWeather() {
   var forecast = document.getElementsByClassName('forecast');
-  var forecastData = state.forecast;
-  forecastData.forEach(function (e, i) {
-    forecast[
-      i
-    ].innerText = `${e.date} ${e.type} ${e.fengxiang}\n${e.high} ${e.low}`;
-  });
+  // var forecastData = state.forecast;
+  // forecastData.forEach(function (e, i) {
+  //   forecast[
+  //     i
+  //   ].innerText = `${e.date} ${e.type} ${e.fengxiang}\n${e.high} ${e.low}`;
+  // });
+  var e = state.forecast[0];
+  forecast[0].innerText = `${e.type} ${e.fengxiang} ${e.high} ${e.low}`;
   document.getElementById('ganmao').innerText = state['ganmao'];
 }
 
