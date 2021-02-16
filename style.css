@@ -140,3 +140,21 @@ body {
     transform: rotate3d(0, 0, 0, 90deg);
   }
 }
+
+@keyframes turn-page1 {
+  0% {
+    transform: rotate3d(0, 0, 0, 90deg);
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, 90deg);
+  }
+}
+
+@keyframes turn-page2 {
+  0% {
+    transform: rotate3d(1, 0, 0, 90deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 0, 90deg);
+  }
+}

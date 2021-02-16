@@ -89,13 +89,20 @@ function runderTime() {
   });
   runderWeather(); // 暂时先放这里
 
-  if (state['second'] === '00') {
-    document.getElementById('minute').style.animation = 'turn-page 1000ms';
+  if (state['second'] === '59') {
+    document.getElementById('minute').style.animation =
+      'turn-page1 1000ms ease-in-out 500ms';
+  } else if (state['second'] === '00') {
+    document.getElementById('minute').style.animation = 'turn-page2 500ms';
   } else {
     document.getElementById('minute').style.animation = '';
   }
-  if (state['minute'] === '00') {
-    document.getElementById('hour').style.animation = 'turn-page 1000ms';
+
+  if (state['second'] === '59' && state['minute'] === '59') {
+    document.getElementById('hour').style.animation =
+      'turn-page1 1000ms linear 500ms';
+  } else if (state['second'] === '00' && state['minute'] === '00') {
+    document.getElementById('hour').style.animation = 'turn-page2 500ms';
   } else {
     document.getElementById('hour').style.animation = '';
   }
