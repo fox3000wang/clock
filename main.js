@@ -1,15 +1,7 @@
 var numZhCn = ['日', '一', '二', '三', '四', '五', '六'];
 var timeProperty = ['hour', 'minute', 'second'];
 var dateProperty = ['year', 'month', 'date', 'day'];
-var state = {
-  year: '',
-  month: '1',
-  date: '',
-  day: '',
-  hour: '00',
-  minute: '00',
-  second: '00',
-}; // 这里的初始化数据随便写，无所谓
+var state = {};
 
 function updateState(obj) {
   Object.keys(obj).map(key => (state[key] = obj[key]));
@@ -56,7 +48,6 @@ function updateTime() {
 
 function runderTime() {
   timeProperty.forEach(e => setDataToDom(state[e], e));
-  runderWeather(); // 暂时先放这里
 
   if (state['second'] === '59') {
     document.getElementById('minute').style.animation =
@@ -74,6 +65,14 @@ function runderTime() {
     document.getElementById('hour').style.animation = 'turn-page2 1000ms';
   } else {
     document.getElementById('hour').style.animation = '';
+  }
+
+  if (
+    (state['hour'] === '05' || state['hour'] === '06') &&
+    (state['minute'] === '30' || state['minute'] === '50') &&
+    state['second'] === '30'
+  ) {
+    updateWeather();
   }
 }
 
@@ -97,6 +96,7 @@ function updateWeather() {
     .then(function (json) {
       //console.log(json);
       updateState(json.data);
+      runderWeather(); // 暂时先放这里
     });
   // city: "上海"
   // forecast: Array(5)
