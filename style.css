@@ -65,15 +65,6 @@ body {
   overflow: hidden;
 }
 
-.line-column {
-  width: 1px;
-  height: 100%;
-  background: #fff;
-  -webkit-transform: scaleX(0.5);
-  -webkit-transform-origin: 0 0;
-  overflow: hidden;
-}
-
 .page {
   display: flex;
   width: 46vw;
@@ -117,14 +108,6 @@ body {
   justify-content: center;
   animation: turn-page 1000ms;
 }
-
-#second-line {
-  position: absolute;
-  background-color: #999;
-  width: 100%;
-  height: 1px;
-}
-
 
 @keyframes turn-page {
   0% {

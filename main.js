@@ -12,10 +12,7 @@ var state = {
 }; // 这里的初始化数据随便写，无所谓
 
 function updateState(obj) {
-  state = {
-    ...state,
-    ...obj,
-  };
+  Object.keys(obj).map(key => (state[key] = obj[key]));
 }
 
 function toString(num) {
@@ -87,9 +84,7 @@ function updateWeather() {
 }
 
 function runderTime() {
-  timeProperty.forEach(function (e) {
-    setDataToDom(state[e], e);
-  });
+  timeProperty.forEach(e => setDataToDom(state[e], e));
   runderWeather(); // 暂时先放这里
 
   if (state['second'] === '59') {
@@ -112,9 +107,7 @@ function runderTime() {
 }
 
 function runderDate() {
-  dateProperty.forEach(function (e) {
-    setDataToDom(state[e], e);
-  });
+  dateProperty.forEach(e => setDataToDom(state[e], e));
 }
 
 function runderWeather() {
