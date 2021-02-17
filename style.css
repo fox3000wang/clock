@@ -1,9 +1,13 @@
 :root {
-  --heah-font-size: 4vh;
-  --heah-height: 6vh;
-  --bottom-height: 8vh;
+  --head-font-size: 4vh;
+  --head-height: 6vh;
+  --time-font-size: 40vw;
+  --time-size: 48vw;
 }
-
+* {
+  padding: 0;
+  margin: 0;
+}
 html,
 body {
   background-color: black;
@@ -14,31 +18,33 @@ body {
   user-select: none;
   font-size: 16px;
   font-family: "Microsoft YaHei";
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100.2vh;
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
 .top {
   display: flex;
-  width: 100%;
+  width: 100vw;
   color: #fff;
   align-items: center;
   justify-content: center;
-  font-size: var(--heah-font-size);
-  line-height: var(--heah-font-size);
+  font-size: var(--head-font-size);
+  line-height: var(--head-font-size);
   flex-wrap: wrap;
+  padding-top: 2vh;
 }
 
 .date-info{
   display: flex;
   flex-wrap: nowrap;
+  font-size: var(--head-font-size);
+  line-height: var(--head-font-size);
 }
 
 .forecast-info {
-  color: #fff;
-  font-size: 2.5vh;
+  font-size: 3vh;
   padding: 0 2vh 0 2vh;
   text-align: center;
 }
@@ -46,15 +52,8 @@ body {
 .bg {
   display: flex;
   width: 100%;
-  height: 84vh;
+  height: 100%;
   align-items: center;
-  justify-content: center;
-}
-
-.bottom {
-  display: flex;
-  width: 100%;
-  height: 4vw;
 }
 
 .line-row {
@@ -67,8 +66,8 @@ body {
 
 .page {
   display: flex;
-  width: 46vw;
-  height: 46vw;
+  width: var(--time-size);
+  height: var(--time-size);
   background-color: #222;
   border-radius: 10%;
   margin: auto;
@@ -77,8 +76,8 @@ body {
 .time {
   width: 100%;
   color: #fff;
-  font-size: 38vw;
-  line-height: 46vw;
+  font-size: var(--time-font-size);
+  line-height: var(--time-size);
   text-align: center;
   padding: 0;
   font-weight: bold;
@@ -87,7 +86,7 @@ body {
 .time-line {
   position: absolute;
   background-color: #000;
-  width: 100%;
+  width: 100vw;
   height: 1vh;
 }
 

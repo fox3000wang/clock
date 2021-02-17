@@ -54,35 +54,6 @@ function updateTime() {
   runderTime();
 }
 
-function updateWeather() {
-  fetch('http://wthrcdn.etouch.cn/weather_mini?city=%E4%B8%8A%E6%B5%B7')
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (json) {
-      //console.log(json);
-      updateState(json.data);
-    });
-  // city: "上海"
-  // forecast: Array(5)
-  // 0: {date: "16日星期二", high: "高温 12℃", fengli: "<![CDATA[2级]]>", low: "低温 3℃", fengxiang: "东北风", …}
-  // 1: {date: "17日星期三", high: "高温 8℃", fengli: "<![CDATA[3级]]>", low: "低温 1℃", fengxiang: "北风", …}
-  // 2: {date: "18日星期四", high: "高温 9℃", fengli: "<![CDATA[3级]]>", low: "低温 3℃", fengxiang: "西北风", …}
-  // 3: {date: "19日星期五", high: "高温 16℃", fengli: "<![CDATA[2级]]>", low: "低温 5℃", fengxiang: "西南风", …}
-  // 4: {date: "20日星期六", high: "高温 20℃", fengli: "<![CDATA[3级]]>", low: "低温 11℃", fengxiang: "西南风", …}
-  // length: 5
-  // __proto__: Array(0)
-  // ganmao: "感冒多发期，适当减少外出频率，适量补充水分，适当增减衣物。"
-  // wendu: "10"
-  // yesterday:
-  // date: "15日星期一"
-  // fl: "<![CDATA[3级]]>"
-  // fx: "北风"
-  // high: "高温 11℃"
-  // low: "低温 4℃"
-  // type: "阴"
-}
-
 function runderTime() {
   timeProperty.forEach(e => setDataToDom(state[e], e));
   runderWeather(); // 暂时先放这里
@@ -112,8 +83,39 @@ function runderDate() {
 
 function runderWeather() {
   var e = state.forecast[0];
-  setDataToDom(`${e.type} ${e.low}${e.high} ${e.fengxiang}`, `forecast`);
+  var forecast = `${e.type} ${e.low}-${e.high} ${e.fengxiang}`;
+  forecast = forecast.replace('高温', '').replace('低温', '');
+  setDataToDom(forecast, `forecast`);
   setDataToDom(state['ganmao'], `ganmao`);
+}
+
+function updateWeather() {
+  fetch('http://wthrcdn.etouch.cn/weather_mini?city=%E4%B8%8A%E6%B5%B7')
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (json) {
+      //console.log(json);
+      updateState(json.data);
+    });
+  // city: "上海"
+  // forecast: Array(5)
+  // 0: {date: "16日星期二", high: "高温 12℃", fengli: "<![CDATA[2级]]>", low: "低温 3℃", fengxiang: "东北风", …}
+  // 1: {date: "17日星期三", high: "高温 8℃", fengli: "<![CDATA[3级]]>", low: "低温 1℃", fengxiang: "北风", …}
+  // 2: {date: "18日星期四", high: "高温 9℃", fengli: "<![CDATA[3级]]>", low: "低温 3℃", fengxiang: "西北风", …}
+  // 3: {date: "19日星期五", high: "高温 16℃", fengli: "<![CDATA[2级]]>", low: "低温 5℃", fengxiang: "西南风", …}
+  // 4: {date: "20日星期六", high: "高温 20℃", fengli: "<![CDATA[3级]]>", low: "低温 11℃", fengxiang: "西南风", …}
+  // length: 5
+  // __proto__: Array(0)
+  // ganmao: "感冒多发期，适当减少外出频率，适量补充水分，适当增减衣物。"
+  // wendu: "10"
+  // yesterday:
+  // date: "15日星期一"
+  // fl: "<![CDATA[3级]]>"
+  // fx: "北风"
+  // high: "高温 11℃"
+  // low: "低温 4℃"
+  // type: "阴"
 }
 
 setInterval(updateTime, 1000);
