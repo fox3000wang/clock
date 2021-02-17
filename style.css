@@ -1,6 +1,6 @@
 :root {
   --heah-font-size: 4vh;
-  --heah-height: 5vh;
+  --heah-height: 6vh;
   --bottom-height: 8vh;
 }
 
@@ -15,7 +15,7 @@ body {
   font-size: 16px;
   font-family: "Microsoft YaHei";
   width: 100%;
-  height: 101%;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -23,12 +23,24 @@ body {
 .top {
   display: flex;
   width: 100%;
-  height: var(--heah-height);
-  /* border-bottom: 0.5px solid #fff; */
   color: #fff;
   align-items: center;
+  justify-content: center;
   font-size: var(--heah-font-size);
   line-height: var(--heah-font-size);
+  flex-wrap: wrap;
+}
+
+.date-info{
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.forecast-info {
+  color: #fff;
+  font-size: 2.5vh;
+  padding: 0 2vh 0 2vh;
+  text-align: center;
 }
 
 .bg {
@@ -113,19 +125,6 @@ body {
   height: 1px;
 }
 
-#ganmao {
-  font-size: 2.5vh;
-  padding: 2.5vh;
-}
-
-.forecast {
-  /* width: 20%; */
-  /* height: 100%; */
-  color: #fff;
-  font-size: 2.5vh;
-  padding: 2.5vh;
-  text-align: center;
-}
 
 @keyframes turn-page {
   0% {

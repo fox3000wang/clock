@@ -16,11 +16,14 @@ function updateState(obj) {
     ...state,
     ...obj,
   };
-  //console.log(JSON.stringify(state));
 }
 
 function toString(num) {
   return ('00' + num).substr(num.toString().length);
+}
+
+function setDataToDom(data, id) {
+  document.getElementById(id).innerText = data;
 }
 
 function updateDate() {
@@ -85,7 +88,7 @@ function updateWeather() {
 
 function runderTime() {
   timeProperty.forEach(function (e) {
-    document.getElementById(e).innerText = state[e];
+    setDataToDom(state[e], e);
   });
   runderWeather(); // 暂时先放这里
 
@@ -110,21 +113,14 @@ function runderTime() {
 
 function runderDate() {
   dateProperty.forEach(function (e) {
-    document.getElementById(e).innerText = state[e];
+    setDataToDom(state[e], e);
   });
 }
 
 function runderWeather() {
-  var forecast = document.getElementsByClassName('forecast');
-  // var forecastData = state.forecast;
-  // forecastData.forEach(function (e, i) {
-  //   forecast[
-  //     i
-  //   ].innerText = `${e.date} ${e.type} ${e.fengxiang}\n${e.high} ${e.low}`;
-  // });
   var e = state.forecast[0];
-  forecast[0].innerText = `${e.type} ${e.fengxiang} ${e.high} ${e.low}`;
-  document.getElementById('ganmao').innerText = state['ganmao'];
+  setDataToDom(`${e.type} ${e.low}${e.high} ${e.fengxiang}`, `forecast`);
+  setDataToDom(state['ganmao'], `ganmao`);
 }
 
 setInterval(updateTime, 1000);
