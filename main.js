@@ -68,8 +68,8 @@ function runderTime() {
   }
 
   if (
-    (state['hour'] === '05' || state['hour'] === '06') &&
-    (state['minute'] === '30' || state['minute'] === '50') &&
+    state['hour'] === '06' &&
+    state['minute'] === '30' &&
     state['second'] === '30'
   ) {
     updateWeather();

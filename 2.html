@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>时钟 离线节能版</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <style>
+    :root {
+      --head-font-size: 4vh;
+      --head-height: 6vh;
+      --time-font-size: 40vw;
+      --time-size: 48vw;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      background-color: black;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      -khtml-user-select: none;
+      user-select: none;
+      font-size: 16px;
+      /* font-family: "Microsoft YaHei"; */
+      width: 100vw;
+      height: 100.2vh;
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .bg {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+    }
+
+    .page {
+      display: flex;
+      width: var(--time-size);
+      height: var(--time-size);
+      background-color: #222;
+      border-radius: 10%;
+      margin: auto;
+    }
+
+    .time {
+      width: 100%;
+      color: #fff;
+      font-size: var(--time-font-size);
+      line-height: var(--time-size);
+      text-align: center;
+      padding: 0;
+      /* font-weight: bold; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="page">
+      <div class="time" id="hour">00</div>
+    </div>
+    <div class="page">
+      <div class="time" id="minute">00</div>
+    </div>
+    <div class="time-line"></div>
+  </div>
+</body>
+
+<script>
+  function toString(num) {
+    return ('00' + num).substr(num.toString().length);
+  }
+
+  function update() {
+    var date = new Date();
+    document.getElementById('hour').innerText = toString(date.getHours());
+    document.getElementById('minute').innerText = toString(date.getMinutes());
+    //console.log((60 - date.getSeconds) * 1000);
+    console.log((60 - date.getSeconds()) * 1000);
+    setTimeout(update, (60 - date.getSeconds()) * 1000);
+  }
+
+  update();
+</script>
+
+</html>
