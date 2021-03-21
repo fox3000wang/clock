@@ -72,6 +72,7 @@ function runderTime() {
     state['minute'] === '30' &&
     state['second'] === '30'
   ) {
+    updateDate();
     updateWeather();
   }
 }
